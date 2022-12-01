@@ -1,0 +1,16 @@
+version: '3'
+services:
+  db:
+    image: mysql:8.0
+    restart: unless-stopped
+    ports:
+      - '3307:3306'
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_PASS}
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_USER="${DB_USER}"
+      - MYSQL_PASSWORD="${DB_PASS}"
+    container_name: inventario-container
+    volumes:
+      - ./docker-mysql/${DB_NAME}-db:/var/lib/mysql/
